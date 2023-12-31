@@ -3,8 +3,10 @@ package mike.autototem.mixin;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.c2s.common.CustomPayloadC2SPacket;
+import net.minecraft.network.packet.c2s.play.CustomPayloadC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
+import net.minecraft.util.Identifier;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,11 +18,8 @@ public class ServerOptOut {
     private void sendInfoPackage(GameJoinS2CPacket packet, CallbackInfo ci) {
         ClientPlayNetworkHandler networkHandler = (ClientPlayNetworkHandler) ((Object) this);
         
-        networkHandler.sendPacket(
-            new CustomPayloadC2SPacket(
+        networkHandler.sendPacket(new CustomPayloadC2SPacket(Identifier.of("autototem", ""),
                 new PacketByteBuf(Unpooled.buffer())
-                    .writeString("Client uses the Autototem mod.")
-            )
-        );
+                        .writeString("Client uses the Autototem mod.")));
     }
 }
