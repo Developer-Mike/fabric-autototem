@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.network.packet.c2s.play.PickFromInventoryC2SPacket;
 import net.minecraft.network.packet.c2s.play.PlayerActionC2SPacket;
 import net.minecraft.network.packet.c2s.play.UpdateSelectedSlotC2SPacket;
@@ -40,12 +40,13 @@ public class OnTotemPopMixin {
 
     @Inject(at = @At("TAIL"), method = "showFloatingItem")
     private void onTotemUse(ItemStack floatingItem, CallbackInfo ci) {
-        if (!floatingItem.isOf(Items.TOTEM_OF_UNDYING))
+        if (floatingItem.getItem() != Items.TOTEM_OF_UNDYING)
             return;
 
-        GameRenderer gameRenderer = (GameRenderer) ((Object) this);
-        MinecraftClient client = gameRenderer.getClient();
-        
+        MinecraftClient client = MinecraftClient.getInstance();
+        if (client == null)
+            return;
+            
         PlayerEntity player = client.player;
         if (player == null)
             return;
@@ -55,7 +56,7 @@ public class OnTotemPopMixin {
         if (!player.hasStatusEffect(StatusEffects.REGENERATION))
             return;
 
-        int spareTotemSlot = getSlotWithSpareTotem(player.getInventory());
+        int spareTotemSlot = getSlotWithSpareTotem(player.inventory);
         if (spareTotemSlot == -1) {
             System.out.println("No Spare Totem Found");
             return;
@@ -78,7 +79,7 @@ public class OnTotemPopMixin {
     }
 
     private void restockSlot(PlayerEntity player, int totemSlot) {
-        PlayerInventory playerInventory = player.getInventory();
+        PlayerInventory playerInventory = player.inventory;
 
         if (totemSlot < 9) {
             packetsToSend = new ArrayList<>();
