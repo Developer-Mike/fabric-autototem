@@ -1,7 +1,8 @@
 package mike.autototem.mixin;
 
+import io.netty.buffer.Unpooled;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.network.packet.BrandCustomPayload;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.c2s.common.CustomPayloadC2SPacket;
 import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +18,8 @@ public class ServerOptOut {
         
         networkHandler.sendPacket(
             new CustomPayloadC2SPacket(
-                new BrandCustomPayload("autototem")
+                new PacketByteBuf(Unpooled.buffer())
+                    .writeString("using_autototem")
             )
         );
     }
