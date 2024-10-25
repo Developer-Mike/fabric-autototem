@@ -16,12 +16,9 @@ public class ServerOptOut {
     private void sendInfoPackage(GameJoinS2CPacket packet, CallbackInfo ci) {
         ClientPlayNetworkHandler networkHandler = (ClientPlayNetworkHandler) ((Object) this);
 
-        networkHandler.sendPacket(
-                new CustomPayloadC2SPacket(
-                        // Use a custom channel for compatibility with https://github.com/jonesdevelopment/sonar
-                        // and other anti-cheat, anti-exploit, and anti-bot plugins.
-                        new UnknownCustomPayload(Identifier.of("autototem-fabric"))
-                )
-        );
+        networkHandler.sendPacket(new CustomPayloadC2SPacket(
+                // Use a custom channel for compatibility with Sonar
+                // https://github.com/Developer-Mike/Autototem-Fabric/pull/15
+                new UnknownCustomPayload(Identifier.of("autototem-fabric"))));
     }
 }
