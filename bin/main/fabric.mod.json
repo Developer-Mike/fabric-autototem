@@ -4,8 +4,6 @@
   "version": "${version}",
   "name": "Autototem",
   "description": "Simple autototem mod.",
-  "issues": "https://github.com/Developer-Mike/Autototem-Fabric/issues",
-  "homepage": "https://github.com/Developer-Mike/Autototem-Fabric",
   "authors": [
     "MikaDev"
   ],
@@ -23,6 +21,7 @@
   ],
   "depends": {
     "fabricloader": "*",
+    "fabric-api": "*",
     "minecraft": "*"
   }
 }
