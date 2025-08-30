@@ -132,7 +132,7 @@ public class OnTotemPopMixin {
               (byte) 0,
               SlotActionType.QUICK_MOVE,
               new Int2ObjectOpenHashMap<>(),
-              ItemStackHash.fromItemStack(inventory.getSelectedStack().copy(), networkHandler.method_68823())
+              ItemStackHash.fromItemStack(inventory.getSelectedStack().copy(), null)
             ));
 
             // The Hotbar Slot contains the Totem - Move it to the Offhand and restore the old item
