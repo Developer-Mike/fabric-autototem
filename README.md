@@ -4,3 +4,6 @@ Currently supports only the offhand.
 
 **Download the latest version on modrinth:**
 https://modrinth.com/mod/autototem
+
+**Download the latest version on CurseForge:**
+https://www.curseforge.com/minecraft/mc-mods/autototem
