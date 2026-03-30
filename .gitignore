@@ -102,6 +102,7 @@ $RECYCLE.BIN/
 
 .gradle
 build/
+.project
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -119,3 +120,5 @@ run/
 
 bin/
 remappedSrc/
+.settings/
+.classpath
