@@ -11,17 +11,12 @@
   "license": "MIT",
   "icon": "assets/autototem/icon.png",
   "environment": "client",
-  "entrypoints": {
-    "client": [
-      "mike.autototem.client.AutototemClient"
-    ]
-  },
+  "entrypoints": {},
   "mixins": [
     "autototem.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",
-    "fabric-api": "*",
     "minecraft": "*"
   }
 }
