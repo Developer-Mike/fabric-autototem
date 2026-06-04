@@ -45,9 +45,8 @@ public class OnTotemPopMixin {
         if (!floatingItem.is(Items.TOTEM_OF_UNDYING))
             return;
 
-        GameRenderer gameRenderer = (GameRenderer) ((Object) this);
-        Minecraft client = gameRenderer.getMinecraft();
-        
+        Minecraft client = Minecraft.getInstance();
+
         Player player = client.player;
         if (player == null)
             return;
@@ -91,7 +90,7 @@ public class OnTotemPopMixin {
 
             packetsToSend.add(new ServerboundPlayerActionPacket(
               ServerboundPlayerActionPacket.Action.SWAP_ITEM_WITH_OFFHAND,
-              BlockPos.ZERO, 
+              BlockPos.ZERO,
               Direction.DOWN
             ));
 
@@ -105,7 +104,7 @@ public class OnTotemPopMixin {
             } else {
                 packetsToSend.add(new ServerboundPlayerActionPacket(
                   ServerboundPlayerActionPacket.Action.SWAP_ITEM_WITH_OFFHAND,
-                  BlockPos.ZERO, 
+                  BlockPos.ZERO,
                   Direction.DOWN
                 ));
             }
@@ -123,7 +122,7 @@ public class OnTotemPopMixin {
 
             packetsToSend.add(new ServerboundPlayerActionPacket(
               ServerboundPlayerActionPacket.Action.SWAP_ITEM_WITH_OFFHAND,
-              BlockPos.ZERO, 
+              BlockPos.ZERO,
               Direction.DOWN
             ));
 
